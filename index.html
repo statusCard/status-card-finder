@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BC Status Card Store Finder</title>
-    <!-- Leaflet CSS for the interactive map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <!-- Google Fonts for a clean look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Use the Inter font family */
@@ -49,9 +46,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- Main Application Grid -->
     <div class="h-screen w-screen flex flex-col">
-        <!-- Header -->
         <header class="bg-white/80 backdrop-blur-lg border-b border-slate-200 p-4 shadow-sm z-20">
             <div class="max-w-7xl mx-auto">
                 <h1 class="text-2xl font-bold text-indigo-600">🏪 Status Card Store Finder</h1>
@@ -59,13 +54,11 @@
             </div>
         </header>
 
-        <!-- Controls -->
         <div class="bg-white/60 backdrop-blur-lg border-b border-slate-200 p-4 z-20">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4">
                 <input type="text" id="searchInput" placeholder="Search by name, nation, or category..." class="w-full md:w-1/3 p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
                 <div id="categoryFilters" class="flex flex-wrap gap-2">
-                    <!-- Filter buttons will be dynamically added here -->
-                </div>
+                    </div>
                 <button id="locationBtn" class="bg-emerald-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
                     Find Near Me
@@ -73,16 +66,13 @@
             </div>
         </div>
 
-        <!-- Main Content -->
         <main class="flex-1 flex flex-col md:flex-row overflow-hidden">
-            <!-- Sidebar with Store List -->
             <aside class="w-full md:w-96 bg-white border-r border-slate-200 flex flex-col overflow-hidden">
                 <div class="p-4 border-b border-slate-200">
                     <p id="storeCount" class="font-semibold text-slate-600">Loading stores...</p>
                 </div>
                 <div id="storeList" class="overflow-y-auto sidebar-scroll flex-1 p-2">
-                    <!-- Store cards will be dynamically added here -->
-                </div>
+                    </div>
                  <div class="p-4 border-t border-slate-200">
                     <button id="addStoreBtn" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg">
                         + Add a New Store
@@ -90,14 +80,12 @@
                 </div>
             </aside>
 
-            <!-- Map Container -->
             <div id="map-container" class="flex-1 h-64 md:h-full bg-slate-200">
                 <div id="map"></div>
             </div>
         </main>
     </div>
 
-    <!-- Add Store Modal -->
     <div id="addStoreModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-lg">
             <div class="flex justify-between items-center mb-6">
@@ -112,8 +100,7 @@
                 <div>
                     <label for="storeCategory" class="font-semibold block mb-1">Category *</label>
                     <select id="storeCategory" class="w-full p-2 border border-slate-300 rounded-lg bg-white" required>
-                        <!-- Options will be added dynamically -->
-                    </select>
+                        </select>
                 </div>
                 <div>
                     <label for="storeAddress" class="font-semibold block mb-1">Address *</label>
@@ -125,10 +112,28 @@
         </div>
     </div>
 
-    <!-- Leaflet.js for the map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- Turf.js for point-in-polygon analysis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turf/6.5.0/turf.min.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"; // Use the CDN path for modular SDK
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBdST6Gf4TDkvzywBH_a4plW1lqAgV8vNc",
+            authDomain: "status-card-finder.firebaseapp.com",
+            projectId: "status-card-finder",
+            storageBucket: "status-card-finder.firebasestorage.app",
+            messagingSenderId: "1001632849366",
+            appId: "1:1001632849366:web:329942e7dd8f80fb73d877"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
 
     <script>
     // Wait until the basic HTML document is loaded before trying to run any code.
